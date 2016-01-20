@@ -27,9 +27,6 @@ shinyServer(
             g <- g + geom_hline(yintercept = ic, col = "red") + geom_line(size = 1, col = "blue")
             g <- g +  labs(title = paste("Cumulative Sample Mean for",str," ( Blue: Sample Mean, Red: Theoretical Mean )", sep=" "))
             g <- g + labs(x = "Number of obs", y = "Cumulative mean")
-            #g <- g + scale_colour_manual(values = c("Sample mean" = "blue","Theoretical mean" = "red"))
-            #g <- g + scale_colour_manual(values = c("blue","red"), labels = c("four", "six"))
-           
             g
             
            
@@ -69,16 +66,10 @@ shinyServer(
             df$"size"<- as.factor(df$"size")
             g <- ggplot(df, aes(x = x, fill = size)) + geom_histogram(alpha = .20, binwidth=.1, colour = "black", aes(y = ..density..)) 
             g <- g + labs(title = paste("Distribution of Sample Mean for",str," (Blue: Sample Mean, Red: Normal for Reference)",sep=" "))
-            
             g <- g + stat_function(fun = dnorm, args = list(mean = r_mean, sd = r_sd), color="red") + geom_density(fill=NA, colour="blue")
-            #g <- g + xlim(0, 14)
-            
-           
             g <- g + scale_x_continuous(limits = lim)
             g
-            #print(min(df$x))
-            #print(max(df$x))
-            
+         
             
             
         })
